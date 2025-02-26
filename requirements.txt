@@ -1,0 +1,40 @@
+seaborn
+matplotlib
+numpy
+pandas
+
+
+curl -s http://input.png | rembg i > output.png
+
+rembg i path/to/input.png path/to/output.png
+
+rembg i -m u2netp path/to/input.png path/to/output.png
+
+rembg i -om path/to/input.png path/to/output.png
+
+rembg i -a path/to/input.png path/to/output.png
+
+SAM example
+
+rembg i -m sam -x '{ "sam_prompt": [{"type": "point", "data": [724, 740], "label": 1}] }' examples/plants-1.jpg examples/plants-1.out.png
+
+Custom model example
+
+rembg i -m u2net_custom -x '{"model_path": "~/.u2net/u2net.onnx"}' path/to/input.png path/to/output.png
+
+
+
+rembg p path/to/input path/to/output
+
+rembg p -w path/to/input path/to/output
+
+rembg s --host 0.0.0.0 --port 7000 --log_level info
+
+curl -s "http://localhost:7000/api/remove?url=http://input.png" -o output.png
+
+curl -s -F file=@/path/to/input.jpg "http://localhost:7000/api/remove"  -o output.png
+
+rembg b image_width image_height -o output_specifier
+
+ffmpeg -i input.mp4 -ss 10 -an -f rawvideo -pix_fmt rgb24 pipe:1 | rembg b 1280 720 -o folder/output-%03u.png
+
